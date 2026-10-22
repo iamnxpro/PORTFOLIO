@@ -203,9 +203,23 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+// The Manus runtime injects ~350 kB of preview tooling directly into index.html. It is only
+// useful inside the Manus preview environment, so it is stripped from GitHub Pages builds.
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  ...(isGitHubPages ? [] : [vitePluginManusRuntime()]),
+  vitePluginManusDebugCollector(),
+  vitePluginStorageProxy(),
+];
 
 export default defineConfig({
+  // BASE_PATH is injected by the GitHub Actions deploy workflow (actions/configure-pages).
+  // It is "/" for a user/organisation site and "/<repo>/" for a project site.
+  base: process.env.BASE_PATH || "/",
   plugins,
   resolve: {
     alias: {

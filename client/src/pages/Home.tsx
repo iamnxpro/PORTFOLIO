@@ -29,8 +29,8 @@ const ui = {
     skills: "المهارات",
     contact: "تواصل",
     selectedWork: "أعمال مختارة",
-    viewProject: "رابط تجريبي",
-    projectHint: "ضع رابط مشروعك الحقيقي داخل ملف البيانات لاحقًا.",
+    viewProject: "مشاهدة المشروع",
+    projectHint: "أضف رابط مشروعك في ملف البيانات: client/src/data/portfolio.ts",
     toolkit: "صندوق الأدوات",
     approach: "طريقة العمل",
     approachTitle: "من الفكرة إلى واجهة مفهومة.",
@@ -38,7 +38,7 @@ const ui = {
     emailCopied: "تم نسخ البريد الإلكتروني",
     copyEmail: "نسخ البريد",
     sendEmail: "أرسل بريدًا",
-    social: "روابط تجريبية",
+    social: "روابط التواصل",
     menu: "القائمة",
     close: "إغلاق",
     scroll: "اكتشف الأعمال",
@@ -52,8 +52,8 @@ const ui = {
     skills: "Skills",
     contact: "Contact",
     selectedWork: "Selected work",
-    viewProject: "Demo link",
-    projectHint: "Replace this with your real project link in the content file.",
+    viewProject: "View project",
+    projectHint: "Add your project link in client/src/data/portfolio.ts",
     toolkit: "Toolkit",
     approach: "Process",
     approachTitle: "From an idea to an interface that makes sense.",
@@ -61,7 +61,7 @@ const ui = {
     emailCopied: "Email copied to clipboard",
     copyEmail: "Copy email",
     sendEmail: "Send an email",
-    social: "Demo links",
+    social: "Social links",
     menu: "Menu",
     close: "Close",
     scroll: "Explore work",
@@ -73,9 +73,13 @@ const ui = {
 
 const translate = (text: LocalizedText, language: Language) => text[language];
 
-/** Supports external previews as well as local images placed in client/public/images for GitHub Pages. */
+/**
+ * Supports external previews as well as local images placed in client/public/images for GitHub Pages.
+ * Local paths are resolved against Vite's BASE_URL, so they also work when the site is
+ * deployed to a GitHub Pages sub-path such as https://<user>.github.io/<repo>/.
+ */
 const imageUrl = (source: string) => {
-  if (source.startsWith("http") || source.startsWith("/manus-storage/")) return source;
+  if (source.startsWith("http")) return source;
   return `${import.meta.env.BASE_URL}${source.replace(/^\//, "")}`;
 };
 
@@ -218,7 +222,15 @@ export default function Home() {
                   <p>{translate(project.description, language)}</p>
                   <div className="project-footer">
                     <div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
-                    <button className="project-link" onClick={showProjectHint}>{copy.viewProject}<MoveUpRight size={17} /></button>
+                    {project.link ? (
+                      <a className="project-link" href={project.link} target="_blank" rel="noreferrer">
+                        {copy.viewProject}<MoveUpRight size={17} />
+                      </a>
+                    ) : (
+                      <button className="project-link" onClick={showProjectHint}>
+                        {copy.viewProject}<MoveUpRight size={17} />
+                      </button>
+                    )}
                   </div>
                 </div>
               </article>

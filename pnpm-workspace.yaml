@@ -1,0 +1,8 @@
+# Keeps this project self-contained: pnpm otherwise walks up to the parent
+# directory, finds its pnpm-workspace.yaml, and fails with
+# "packages field missing or empty" when running `pnpm install` here.
+packages: []
+
+# Note: the list of dependencies allowed to run install scripts lives in
+# package.json under "pnpm.onlyBuiltDependencies" — pnpm 10.4 reads it from
+# the package manifest, not from this file.

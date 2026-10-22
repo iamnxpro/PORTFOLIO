@@ -21,8 +21,8 @@ export const siteData = {
     email: "hello@adamsalim.dev",
     github: "https://github.com/your-username",
     linkedin: "https://www.linkedin.com/in/your-username",
-    heroImage: "/manus-storage/portfolio-hero-editorial_adf449f7.jpg",
-    markImage: "/manus-storage/portfolio-mark_ec612b47.png",
+    heroImage: "images/hero.jpg",
+    markImage: "images/mark.jpg",
   },
   hero: {
     eyebrow: { ar: "ملاحظات من الاستوديو · 2026", en: "Notes from the studio · 2026" },
@@ -57,7 +57,7 @@ export const siteData = {
         en: "A focused interface that helps a learner organize tasks, lessons, and daily progress without visual noise.",
       },
       stack: ["React", "TypeScript", "CSS"],
-      image: "/manus-storage/portfolio-project-dashboard_a1d9c043.jpg",
+      image: "images/project-1.jpg",
       link: "https://github.com/your-username/learner-dashboard",
     },
     {
@@ -70,7 +70,7 @@ export const siteData = {
         en: "A simple mobile concept for gathering short notes and tasks in one calm, quick space.",
       },
       stack: ["React Native", "Expo", "UI Design"],
-      image: "/manus-storage/portfolio-project-mobile_e48e0dbf.jpg",
+      image: "images/project-2.jpg",
       link: "https://github.com/your-username/daily-note",
     },
     {
@@ -83,7 +83,7 @@ export const siteData = {
         en: "A studio introduction page that combines brand story, services, and selected work in a clear visual sequence.",
       },
       stack: ["Figma", "React", "Motion"],
-      image: "/manus-storage/portfolio-project-code_f29a960d.jpg",
+      image: "images/project-3.jpg",
       link: "https://github.com/your-username/studio-landing",
     },
   ],
