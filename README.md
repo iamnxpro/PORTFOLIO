@@ -55,3 +55,4 @@ pnpm dev
 ارفع المشروع إلى مستودع GitHub، ثم اذهب إلى **Settings → Pages** واختر **GitHub Actions** كمصدر للنشر. يوجد ملف إعداد نشر جاهز داخل `.github/workflows/deploy.yml`. بعد رفع التعديلات إلى الفرع `main`، ستبني GitHub الموقع وتنشره تلقائيًا.
 
 > تذكّر تغيير روابط GitHub وLinkedIn والبريد الإلكتروني التجريبية قبل النشر.
+# PORTFOLIO
