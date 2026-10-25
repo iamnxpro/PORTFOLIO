@@ -11,19 +11,35 @@ export type LocalizedText = {
   en: string;
 };
 
+export type SocialLink = {
+  id: string;
+  label: { ar: string; en: string };
+  href: string;
+  icon?: string; // path to custom icon in public/images
+  type?: "lucide" | "custom";
+};
+
 export const siteData = {
   identity: {
-    initials: "AS",
-    name: { ar: "امين", en: "Adam Salim" },
+    initials: "AM",
+    name: { ar: "امين", en: "Amin" },
     role: { ar: "مطور عام ومصمم رقمي", en: "General Developer & Digital Designer" },
     location: { ar: "الدار البيضاء، المغرب", en: "Casablanca, Morocco" },
     availability: { ar: "متاح لفرص جديدة", en: "Open to new opportunities" },
-    email: "hello@adamsalim.dev",
-    github: "https://github.com/your-username",
+    email: "iamnx.amin.pro@gmail.com",
+    github: "https://github.com/iamnxpro",
     linkedin: "https://www.linkedin.com/in/your-username",
     heroImage: "images/hero.jpg",
     markImage: "images/mark.jpg",
   },
+  social: [
+    { id: "whatsapp", label: { ar: "واتساب", en: "WhatsApp" }, href: "https://wa.me/212754427433", icon: "images/logo.jpg", type: "custom" },
+    { id: "instagram", label: { ar: "إنستغرام", en: "Instagram" }, href: "https://www.instagram.com/iamnx_pro/", icon: "images/instalogo.jpg", type: "custom" },
+    { id: "facebook", label: { ar: "فيسبوك", en: "Facebook" }, href: "https://web.facebook.com/iamnxpro", icon: "images/facelogo.jpg", type: "custom" },
+    { id: "github", label: { ar: "جيتهاب", en: "GitHub" }, href: "https://github.com/iamnxpro", type: "lucide" },
+    { id: "discord", label: { ar: "ديسكورد", en: "Discord" }, href: "https://discord.com/users/1218123666361942127", icon: "images/vU8pcbf.png", type: "custom" },
+    { id: "email", label: { ar: "البريد", en: "Email" }, href: "mailto:iamnx.amin.pro@gmail.com", icon: "images/gmail.jpg", type: "custom" },
+  ] as SocialLink[],
   hero: {
     eyebrow: { ar: "ملاحظات من الاستوديو · 2026", en: "Notes from the studio · 2026" },
     title: { ar: "أصمّم تجارب رقمية واضحة، ثم أبنيها لتعمل.", en: "I design clear digital experiences, then build them to work." },
@@ -49,42 +65,42 @@ export const siteData = {
   projects: [
     {
       number: "01",
-      title: { ar: "لوحة إدارة المتعلم", en: "Learner Dashboard" },
-      category: { ar: "واجهة ويب", en: "Web interface" },
-      status: { ar: "مشروع تجريبي", en: "Concept project" },
+      title: { ar: "IAMNXLauncher", en: "IAMNXLauncher" },
+      category: { ar: "تطبيق سطح مكتب", en: "Desktop application" },
+      status: { ar: "قيد الإصلاح", en: "Under Repair" },
       description: {
-        ar: "واجهة مركزة تساعد المتعلم على تنظيم المهام والدروس والتقدم اليومي دون ازدحام بصري.",
-        en: "A focused interface that helps a learner organize tasks, lessons, and daily progress without visual noise.",
+        ar: "لانشر ماين كرافت مبني على بريزم لانشر",
+        en: "A Minecraft launcher built on Prism Launcher",
       },
-      stack: ["React", "TypeScript", "CSS"],
+      stack: ["C++", "CMake", "Java", "QML"],
       image: "images/project-1.jpg",
-      link: "https://github.com/your-username/learner-dashboard",
+      link: "https://github.com/iamnxpro/IAMNXLauncher",
     },
     {
       number: "02",
-      title: { ar: "دفتر يومي", en: "Daily Note" },
-      category: { ar: "تجربة هاتف", en: "Mobile experience" },
-      status: { ar: "قيد التطوير", en: "In progress" },
+      title: { ar: "قيد التطوير", en: "Under Development" },
+      category: { ar: "قيد التطوير", en: "In development" },
+      status: { ar: "قيد التطوير", en: "In development" },
       description: {
-        ar: "فكرة تطبيق هاتف بسيطة لتجميع الملاحظات والمهام القصيرة في مساحة هادئة وسريعة.",
-        en: "A simple mobile concept for gathering short notes and tasks in one calm, quick space.",
+        ar: "مشروع جديد قادم قريبًا...",
+        en: "A new project coming soon...",
       },
-      stack: ["React Native", "Expo", "UI Design"],
+      stack: ["TBD"],
       image: "images/project-2.jpg",
-      link: "https://github.com/your-username/daily-note",
+      link: "",
     },
     {
       number: "03",
-      title: { ar: "موقع الاستوديو", en: "Studio Landing Page" },
-      category: { ar: "هوية وموقع", en: "Brand & website" },
-      status: { ar: "مشروع تجريبي", en: "Concept project" },
+      title: { ar: "قيد التطوير", en: "Under Development" },
+      category: { ar: "قيد التطوير", en: "In development" },
+      status: { ar: "قيد التطوير", en: "In development" },
       description: {
-        ar: "صفحة تعريفية لاستوديو إبداعي تجمع قصة العلامة والخدمات ونماذج العمل في مسار بصري واضح.",
-        en: "A studio introduction page that combines brand story, services, and selected work in a clear visual sequence.",
+        ar: "مشروع جديد قادم قريبًا...",
+        en: "A new project coming soon...",
       },
-      stack: ["Figma", "React", "Motion"],
+      stack: ["TBD"],
       image: "images/project-3.jpg",
-      link: "https://github.com/your-username/studio-landing",
+      link: "",
     },
   ],
   contact: {

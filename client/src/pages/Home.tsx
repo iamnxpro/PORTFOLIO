@@ -21,6 +21,7 @@ import {
   X,
 } from "lucide-react";
 import { type Language, type LocalizedText, siteData } from "@/data/portfolio";
+import { imageUrl } from "@/lib/utils";
 
 const ui = {
   ar: {
@@ -73,16 +74,6 @@ const ui = {
 
 const translate = (text: LocalizedText, language: Language) => text[language];
 
-/**
- * Supports external previews as well as local images placed in client/public/images for GitHub Pages.
- * Local paths are resolved against Vite's BASE_URL, so they also work when the site is
- * deployed to a GitHub Pages sub-path such as https://<user>.github.io/<repo>/.
- */
-const imageUrl = (source: string) => {
-  if (source.startsWith("http")) return source;
-  return `${import.meta.env.BASE_URL}${source.replace(/^\//, "")}`;
-};
-
 export default function Home() {
   const [language, setLanguage] = useState<Language>("ar");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -131,7 +122,6 @@ export default function Home() {
       <aside className="side-rail" aria-label="Portfolio identity">
         <button className="brand-stamp" onClick={() => scrollTo("top")} aria-label="Back to top">
           <img src={imageUrl(identity.markImage)} alt="" />
-          <span>{identity.initials}</span>
         </button>
         <div className="rail-line" />
         <div className="rail-meta">
@@ -226,6 +216,10 @@ export default function Home() {
                       <a className="project-link" href={project.link} target="_blank" rel="noreferrer">
                         {copy.viewProject}<MoveUpRight size={17} />
                       </a>
+                    ) : (project.status.ar === "قيد التطوير" || project.status.en === "In development" || project.status.en === "Under Development") ? (
+                      <button className="project-link project-link-disabled" onClick={() => { setNotice(language === "ar" ? "المشروع قيد التطوير" : "Project is under development"); window.setTimeout(() => setNotice(""), 2400); }}>
+                        {language === "ar" ? "قيد التطوير" : "In Development"}<MoveUpRight size={17} />
+                      </button>
                     ) : (
                       <button className="project-link" onClick={showProjectHint}>
                         {copy.viewProject}<MoveUpRight size={17} />
@@ -270,9 +264,29 @@ export default function Home() {
           </div>
           <div className="contact-links">
             <span>{copy.social}</span>
-            <a href={identity.github} target="_blank" rel="noreferrer"><Github size={18} /> GitHub <ArrowUpRight size={15} /></a>
-            <a href={identity.linkedin} target="_blank" rel="noreferrer"><Linkedin size={18} /> LinkedIn <ArrowUpRight size={15} /></a>
-            <a href={`mailto:${identity.email}`}><Mail size={18} /> {identity.email} <ArrowUpRight size={15} /></a>
+            {siteData.social ? (
+              siteData.social.map((link) => {
+                const isCustom = link.type === "custom" && link.icon;
+                return (
+                  <a key={link.id} href={link.href} target={link.href.startsWith("mailto:") ? undefined : "_blank"} rel="noreferrer">
+                    {isCustom ? (
+                      <img src={imageUrl(link.icon!)} alt="" className="contact-icon" />
+                    ) : link.id === "github" ? (
+                      <Github size={18} />
+                    ) : (
+                      <Mail size={18} />
+                    )}
+                    {translate(link.label, language)} <ArrowUpRight size={15} />
+                  </a>
+                );
+              })
+            ) : (
+              <>
+                <a href={identity.github} target="_blank" rel="noreferrer"><Github size={18} /> GitHub <ArrowUpRight size={15} /></a>
+                <a href={identity.linkedin} target="_blank" rel="noreferrer"><Linkedin size={18} /> LinkedIn <ArrowUpRight size={15} /></a>
+                <a href={`mailto:${identity.email}`}><Mail size={18} /> {identity.email} <ArrowUpRight size={15} /></a>
+              </>
+            )}
           </div>
         </section>
       </main>
