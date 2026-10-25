@@ -22,7 +22,7 @@ export type SocialLink = {
 export const siteData = {
   identity: {
     initials: "AM",
-    name: { ar: "امين", en: "IAMNXPRO" },
+    name: { ar: "امين", en: "AMIN" },
     role: { ar: "مطور عام ومصمم رقمي", en: "General Developer & Digital Designer" },
     location: { ar: "الدار البيضاء، المغرب", en: "Casablanca, Morocco" },
     availability: { ar: "متاح لفرص جديدة", en: "Open to new opportunities" },
